@@ -213,6 +213,9 @@ def parse_inline_markdown(text):
     # 3. Italics: *text* or _text_
     t = re.sub(r'\*([^*]+)\*|_([^_]+)_', r'<em>\1\2</em>', t)
     
+    # 3.5. Images: ![alt](url)
+    t = re.sub(r'!\[([^\]]+)\]\(([^)]+)\)', r'<div class="article-image-container"><img src="\2" alt="\1"><div class="image-caption">\1</div></div>', t)
+    
     # 4. Links: [text](url)
     # We must be careful to handle escaped quotes or ampersands in URLs
     t = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank">\1</a>', t)

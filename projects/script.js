@@ -1,8 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // State Management
-    let projectsData = [];
-    let activeFilter = 'all';
     let searchQuery = '';
+
+    // Tag Display overrides for polished capitalization
+    const tagDisplayOverrides = {
+        'palo alto': 'Palo Alto',
+        'servicenow': 'ServiceNow',
+        'cybersecurity': 'Cybersecurity'
+    };
 
     // Elements
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -73,8 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = document.createElement('button');
             btn.className = 'filter-tag';
             btn.setAttribute('data-tag', tag);
-            // Capitalize first letter
-            btn.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+            // Capitalize or override tag display
+            const displayName = tagDisplayOverrides[tag.toLowerCase()] || (tag.charAt(0).toUpperCase() + tag.slice(1));
+            btn.textContent = displayName;
             tagFiltersList.appendChild(btn);
         });
 
@@ -120,8 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'glow-card';
             card.setAttribute('data-slug', project.slug);
             
-            // Tags HTML
-            const tagsHtml = project.tags ? project.tags.map(t => `<span class="card-tag">${t}</span>`).join('') : '';
+            // Tags HTML with proper casing overrides
+            const tagsHtml = project.tags ? project.tags.map(t => {
+                const tLower = t.toLowerCase();
+                const displayName = tagDisplayOverrides[tLower] || t;
+                return `<span class="card-tag">${displayName}</span>`;
+            }).join('') : '';
             
             card.innerHTML = `
                 <div class="card-banner">

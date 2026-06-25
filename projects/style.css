@@ -1062,6 +1062,32 @@ body {
     background: rgba(255, 255, 255, 0.01);
 }
 
+/* Inline Images and Captions */
+.article-image-container {
+    margin: 2rem 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.article-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.image-caption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
 /* Footer styling */
 .footer {
     border-top: 1px solid rgba(255, 255, 255, 0.03);
