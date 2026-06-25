@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Fetch Projects Data
     async function fetchProjects() {
         try {
-            const response = await fetch('./posts.json');
+            const response = await fetch(`./posts.json?_t=${Date.now()}`);
             if (!response.ok) {
                 throw new Error('Failed to load portfolio database.');
             }
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Fetch individual post file
-            const response = await fetch(`./posts/${slug}.json`);
+            const response = await fetch(`./posts/${slug}.json?_t=${Date.now()}`);
             if (!response.ok) {
                 throw new Error('Could not retrieve detailed report content.');
             }
