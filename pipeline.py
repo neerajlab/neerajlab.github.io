@@ -278,6 +278,7 @@ def main():
     cover_image = args.cover
     read_time = args.read_time
     description = ""
+    date_str = ""
     
     body_content = draft_content
     
@@ -305,6 +306,8 @@ def main():
                         read_time = v
                     elif k == 'description':
                         description = v
+                    elif k == 'date':
+                        date_str = v
                         
     if not title:
         # Fallback to draft filename as title
@@ -336,12 +339,13 @@ def main():
     
     # 4. Generate Post JSON Object
     import datetime
-    today_str = datetime.date.today().strftime("%B %d, %Y")
+    if not date_str:
+        date_str = datetime.date.today().strftime("%B %d, %Y")
     
     post_data = {
         "title": sanitized_title,
         "slug": slug,
-        "date": today_str,
+        "date": date_str,
         "category": sanitized_category,
         "tags": sanitized_tags,
         "cover_image": cover_image,
@@ -381,7 +385,7 @@ def main():
     index_entry = {
         "title": sanitized_title,
         "slug": slug,
-        "date": today_str,
+        "date": date_str,
         "category": sanitized_category,
         "tags": sanitized_tags,
         "cover_image": cover_image,

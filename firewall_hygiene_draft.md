@@ -5,6 +5,7 @@ tags: "Palo Alto, Panorama, Python, ServiceNow, Automation, Cybersecurity"
 cover: "./assets/firewall_hygiene.png"
 read_time: "10 min read"
 description: "A 5-stage firewall hygiene workflow that identifies stale rules, resolves ownership through ServiceNow, supports owner review, and stages controlled cleanup through Palo Alto Panorama APIs."
+date: "June 25, 2025"
 ---
 
 # Automated Firewall Hygiene System
@@ -14,12 +15,14 @@ description: "A 5-stage firewall hygiene workflow that identifies stale rules, r
 
 Managing firewall policies across an enterprise network requires balancing operational uptime with a strong security posture. Over years of operations, security rules inevitably accumulate. Rules created for temporary access, vendor testing, or legacy applications are often abandoned once they are no longer needed.
 
-This post walks through the architecture of an **Automated Firewall Hygiene System** — a 5-stage workflow that connects firewall rule usage data, ownership lookup, human review, and controlled enforcement, while reducing the risk of operational impact. I built this workflow to make stale rule reviews more consistent, reduce manual tracking, and keep enforcement actions behind clear approval gates.
+This post walks through the architecture of an **Automated Firewall Hygiene System** — a 5-stage workflow that connects firewall rule usage data, ownership lookup, human review, and controlled enforcement, while reducing the risk of operational impact.
+
+I built this workflow to make stale rule reviews more consistent, reduce manual tracking, and keep enforcement actions behind clear approval gates.
 
 ## 2. The Problem: Stale Firewall Rules
 
 As enterprise networks grow, firewall rule bloat becomes increasingly common. Obsolete rules present several key challenges:
-* **Expanded Attack Surface:** Every active rule that is no longer required can expand the potential path for unauthorized access.
+* **Expanded Attack Surface:** Every active rule that is no longer required can expand the possible paths for unauthorized access.
 * **Compliance & Audit Debt:** Bloated security policies complicate cybersecurity compliance audits, making it difficult to justify active rules.
 * **Operational Complexity:** Large rulebases become harder to review, troubleshoot, and safely change.
 * **Performance Overhead:** Large, unoptimized policy tables can add operational overhead and may affect performance depending on platform and policy structure.
@@ -50,7 +53,7 @@ The lifecycle of a firewall policy cleanup is divided into five distinct, contro
 * **Stage 2: Ownership Matching:** Parses the rule name to extract the original ServiceNow ticket ID and queries ServiceNow to resolve the active email of the request owner.
 * **Stage 3: Secure Owner Review:** Sends a secure, unique email link to the owner, consolidating all their stale rules onto a single workspace. The owner logs in and selects a review decision such as disable, retain, or exclude, with justification where required.
 * **Stage 4: Admin Review & Enforcement:** Stages owner submissions in the SQLite database. Administrators review the justifications and disable approved rules in a single bulk API transaction.
-* **Stage 5: Monitor, Remove, and Tag:** Keeps disabled rules in a cooling-off period to monitor for unexpected traffic. Approved rules are eventually deleted using background workers to process approved cleanup actions in a controlled queue. Rules marked for retention are programmatically tagged to bypass future audits.
+* **Stage 5: Monitor, Remove, and Tag:** Keeps disabled rules in a cooling-off period to monitor for unexpected traffic. Rules that complete the cooling-off period are approved for removal using background workers that process cleanup actions in a controlled queue. Rules marked for retention are programmatically tagged to bypass future audits.
 
 ## 6. ServiceNow Ownership Resolution
 
@@ -64,7 +67,7 @@ All firewall policy interactions are handled through Palo Alto Panorama APIs. Th
 
 * **Active Queries:** Pulls complete security policy configurations, device groups, and hit counters.
 * **Controlled Disabling:** Updates the disabled state only for rules approved through the review workflow.
-* **Persistent Tagging:** Writes custom exclusion tags (like `Retain` or `Do-not-delete`) directly to the policy metadata, ensuring the rule is excluded from all future audit reports.
+* **Persistent Tagging:** Writes custom review tags, such as Retain or Do-not-delete directly to the policy metadata, ensuring the rule is excluded from all future audit reports.
 
 ## 8. Safety Checks and Approval Gates
 
