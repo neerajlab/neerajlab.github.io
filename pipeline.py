@@ -5,6 +5,7 @@ import json
 import argparse
 import html
 from pathlib import Path
+import subprocess
 
 # ==========================================
 # CONSTANTS & SANITIZATION CONFIGURATION
@@ -252,6 +253,7 @@ def main():
     parser.add_argument("--tags", default="Automation,Firewall,Palo Alto", help="Comma-separated tags")
     parser.add_argument("--cover", default="./assets/firewall_hygiene.png", help="Path to cover image")
     parser.add_argument("--read_time", default="8 min read", help="Estimated reading time")
+    parser.add_argument("--push", action="store_true", help="Automatically stage, commit, and push to GitHub")
     
     args = parser.parse_args()
     
@@ -385,6 +387,28 @@ def main():
     with open(db_path, "w", encoding="utf-8") as f:
         json.dump(db_data, f, indent=4)
     print(f"  [INDEX] Successfully updated index database: {db_path}")
+    
+    # 6. Optional Git Push Automation
+    if args.push:
+        print("\nAutomating Git Publish Workflow...")
+        try:
+            print("  [GIT] Staging all modified files...")
+            subprocess.run(["git", "add", "."], check=True)
+            
+            commit_msg = f"publish: {sanitized_title}"
+            print(f"  [GIT] Committing changes: \"{commit_msg}\"...")
+            subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+            
+            print("  [GIT] Pushing to remote repository (main)...")
+            subprocess.run(["git", "push", "origin", "main"], check=True)
+            print("  [GIT] Successfully pushed and published to GitHub Pages!")
+        except subprocess.CalledProcessError as e:
+            print(f"  [ERROR] Git command failed with exit code {e.returncode}")
+            print("  [TIP] If you get a 403 Permission Denied error, verify that your local Git credentials ")
+            print("        have write permission to the remote repository, or add your active account as a collaborator.")
+        except Exception as e:
+            print(f"  [ERROR] An error occurred during Git automation: {e}")
+            
     print("\n=== Pipeline Execution Completed Successfully! ===")
 
 if __name__ == "__main__":
