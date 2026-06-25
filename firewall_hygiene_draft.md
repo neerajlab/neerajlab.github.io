@@ -79,22 +79,7 @@ The most important part of the system is not deletion — it is control. The wor
 * **30-to-60-Day Cooling-Off Period:** Rules are kept in a disabled state first, giving teams time to catch unexpected dependencies before permanent removal.
 * **Operational Controls:** Logging, transaction controls, and rate limiting to protect the review portal and preserve audit history.
 
-## 9. Dashboard Walkthrough
-
-The demo below walks through the main dashboard views and review workflow.
-
-All sensitive values, internal hostnames, IP addresses, credentials, and topology details have been replaced with sanitized demo data.
-
-![Automated Firewall Hygiene Pipeline Demo Walkthrough](./assets/demo_walkthrough.gif)
-
-The walkthrough covers:
-* System flow and pipeline stages
-* Audit results for stale firewall rules
-* Owner resolution and review notifications
-* Reviewer decision workflow
-* Admin dashboard, job logs, and staged enforcement actions
-
-## 10. Lessons Learned
+## 9. Lessons Learned
 
 Building the workflow reinforced a few important lessons:
 
@@ -104,7 +89,7 @@ Building the workflow reinforced a few important lessons:
 * **Audit history is part of the product.** Every decision, justification, and enforcement action should be logged so the process can stand up to future review.
 * **Simple tooling is easier to operate.** A lightweight dashboard with clear stages can be more useful than a complex platform that is hard to maintain.
 
-## 11. What I Would Improve Next
+## 10. What I Would Improve Next
 
 The next improvement would be a scheduled monthly workflow that automatically starts the audit cycle while keeping enforcement actions behind review and approval gates.
 
