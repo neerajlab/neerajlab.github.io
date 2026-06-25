@@ -5,7 +5,7 @@ tags: "Palo Alto, Panorama, Python, ServiceNow, Automation, Cybersecurity"
 cover: "./assets/firewall_hygiene.png"
 read_time: "10 min read"
 description: "A 5-stage firewall hygiene workflow that identifies stale rules, resolves ownership through ServiceNow, supports owner review, and stages controlled cleanup through Palo Alto Panorama APIs."
-date: "June 25, 2025"
+date: "June 26, 2026"
 ---
 
 # Automated Firewall Hygiene System
