@@ -14,6 +14,6 @@
         ],
         "cover_image": "./assets/firewall_hygiene.png",
         "read_time": "10 min read",
-        "description": "# Automated Firewall Hygiene System: A Grounded Approach to Stale Policy Cleanups  Managing firewall policies across an enterprise network requires balancing operational uptime with a strong security..."
+        "description": "A 5-stage firewall hygiene workflow that identifies stale rules, resolves ownership through ServiceNow, supports owner review, and stages controlled cleanup through Palo Alto Panorama APIs."
     }
 ]

@@ -274,6 +274,7 @@ def main():
     tags_list = [t.strip() for t in args.tags.split(",")]
     cover_image = args.cover
     read_time = args.read_time
+    description = ""
     
     body_content = draft_content
     
@@ -299,6 +300,8 @@ def main():
                         cover_image = v
                     elif k == 'read_time':
                         read_time = v
+                    elif k == 'description':
+                        description = v
                         
     if not title:
         # Fallback to draft filename as title
@@ -313,6 +316,13 @@ def main():
     sanitized_title, _ = sanitize_text(title)
     sanitized_category, _ = sanitize_text(category)
     sanitized_tags = [sanitize_text(t)[0] for t in tags_list]
+    sanitized_description, _ = sanitize_text(description)
+    
+    if not sanitized_description:
+        # Fallback to body content if description is empty, stripping markdown formatting
+        plain_body = re.sub(r'#+\s+.*', '', sanitized_body) # strip headers
+        plain_body = re.sub(r'[*_`\-]', '', plain_body)      # strip basic MD chars
+        sanitized_description = plain_body[:200].replace('\n', ' ').strip() + "..."
     
     for log in scrub_log:
         print(f"  [SCRUBBED] {log}")
@@ -333,7 +343,7 @@ def main():
         "tags": sanitized_tags,
         "cover_image": cover_image,
         "read_time": read_time,
-        "description": sanitized_body[:200].replace('\n', ' ').strip() + "...",
+        "description": sanitized_description,
         "content": html_body
     }
     
@@ -373,7 +383,7 @@ def main():
         "tags": sanitized_tags,
         "cover_image": cover_image,
         "read_time": read_time,
-        "description": post_data["description"]
+        "description": sanitized_description
     }
     
     if existing_idx >= 0:
