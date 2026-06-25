@@ -67,7 +67,7 @@ All firewall policy interactions are handled through Palo Alto Panorama APIs. Th
 
 * **Active Queries:** Pulls complete security policy configurations, device groups, and hit counters.
 * **Controlled Disabling:** Updates the disabled state only for rules approved through the review workflow.
-* **Persistent Tagging:** Writes custom review tags, such as Retain or Do-not-delete, directly to the policy metadata, ensuring the rule is excluded from all future audit reports.
+* **Persistent Tagging:** Writes custom review tags, such as Retain or Do-not-delete, directly to the policy metadata, so approved exceptions can be identified in future audits.
 
 ## 8. Safety Checks and Approval Gates
 
