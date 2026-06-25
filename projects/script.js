@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // State Management
+    let projectsData = [];
+    let activeFilter = 'all';
     let searchQuery = '';
 
     // Tag Display overrides for polished capitalization
