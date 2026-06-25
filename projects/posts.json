@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Automating Firewall Hygiene: Cleaning Up 365 Days of Unused Rules at Enterprise Scale",
+        "slug": "automating-firewall-hygiene-cleaning-up-365-days-of-unused-rules-at-enterprise-scale",
+        "date": "June 25, 2026",
+        "category": "Security Engineering",
+        "tags": [
+            "Palo Alto",
+            "Panorama",
+            "Python",
+            "ServiceNow",
+            "Automation",
+            "CyberSecurity"
+        ],
+        "cover_image": "./assets/firewall_hygiene.png",
+        "read_time": "11 min read",
+        "description": "# Automating Firewall Hygiene: Cleaning Up 365 Days of Unused Rules at Enterprise Scale  Imagine managing thousands of firewall security policies across a multi-billion dollar global network, only to..."
+    }
+]
