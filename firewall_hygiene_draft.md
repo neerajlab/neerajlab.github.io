@@ -53,7 +53,7 @@ The lifecycle of a firewall policy cleanup is divided into five distinct, contro
 * **Stage 2: Ownership Matching:** Parses the rule name to extract the original ServiceNow ticket ID and queries ServiceNow to resolve the active email of the request owner.
 * **Stage 3: Secure Owner Review:** Sends a secure, unique email link to the owner, consolidating all their stale rules onto a single workspace. The owner logs in and selects a review decision such as disable, retain, or exclude, with justification where required.
 * **Stage 4: Admin Review & Enforcement:** Stages owner submissions in the SQLite database. Administrators review the justifications and disable approved rules in a single bulk API transaction.
-* **Stage 5: Monitor, Remove, and Tag:** Keeps disabled rules in a cooling-off period to monitor for unexpected traffic. Rules that complete the cooling-off period are approved for removal using background workers that process cleanup actions in a controlled queue. Rules marked for retention are programmatically tagged to bypass future audits.
+* **Stage 5: Monitor, Remove, and Tag:** Keeps disabled rules in a cooling-off period to monitor for unexpected traffic. Rules that complete the cooling-off period are approved for removal using background workers that process cleanup actions in a controlled queue. Rules marked for retention are programmatically tagged so they are handled as approved exceptions in future audits.
 
 ## 6. ServiceNow Ownership Resolution
 
@@ -67,7 +67,7 @@ All firewall policy interactions are handled through Palo Alto Panorama APIs. Th
 
 * **Active Queries:** Pulls complete security policy configurations, device groups, and hit counters.
 * **Controlled Disabling:** Updates the disabled state only for rules approved through the review workflow.
-* **Persistent Tagging:** Writes custom review tags, such as Retain or Do-not-delete directly to the policy metadata, ensuring the rule is excluded from all future audit reports.
+* **Persistent Tagging:** Writes custom review tags, such as Retain or Do-not-delete, directly to the policy metadata, ensuring the rule is excluded from all future audit reports.
 
 ## 8. Safety Checks and Approval Gates
 
