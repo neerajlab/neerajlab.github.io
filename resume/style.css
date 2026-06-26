@@ -1,27 +1,27 @@
 /* ==========================================
-   GLOBAL CONFIGURATION & COLOR TOKENS
+   GLOBAL CONFIGURATION & COLOR TOKENS (LIGHT THEME)
    ========================================== */
 :root {
-    --bg-color: #030712;
-    --card-bg: rgba(17, 24, 39, 0.4);
-    --card-border: rgba(255, 255, 255, 0.04);
-    --card-glow: rgba(139, 92, 246, 0.03);
+    --bg-color: #f8fafc;          /* Slate 50 (Premium Off-White) */
+    --card-bg: #ffffff;           /* Pure White */
+    --card-border: rgba(15, 23, 42, 0.05); /* Slate 900 with low opacity */
+    --card-glow: rgba(124, 58, 237, 0.01);
     
-    --text-primary: #f9fafb;
-    --text-secondary: #d1d5db;
-    --text-muted: #9ca3af;
-    --text-dimmed: #6b7280;
+    --text-primary: #0f172a;      /* Slate 900 (High contrast dark slate) */
+    --text-secondary: #334155;    /* Slate 700 (Very readable body text) */
+    --text-muted: #64748b;        /* Slate 500 (Metadata & subtitles) */
+    --text-dimmed: #94a3b8;       /* Slate 400 (Subtle dividers) */
     
-    --accent-color: #8b5cf6;     /* Violet */
-    --accent-cyan: #06b6d4;      /* Cyan */
-    --accent-glow-1: rgba(139, 92, 246, 0.08);
-    --accent-glow-2: rgba(6, 118, 212, 0.08);
+    --accent-color: #7c3aed;      /* Deep Violet */
+    --accent-cyan: #0891b2;       /* Deep Cyan */
+    --accent-glow-1: rgba(124, 58, 237, 0.03);
+    --accent-glow-2: rgba(8, 145, 178, 0.03);
     
     --font-sans: 'Inter', sans-serif;
     --font-heading: 'Outfit', sans-serif;
     --font-mono: 'Fira Code', monospace;
     
-    --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-premium: 0 10px 30px rgba(15, 23, 42, 0.03), 0 1px 3px rgba(15, 23, 42, 0.01);
     --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -46,7 +46,7 @@ body {
     position: relative;
 }
 
-/* Ambient Background Glows (Project Aesthetics) */
+/* Ambient Background Glows (Light Theme) */
 .bg-glow {
     position: fixed;
     width: 600px;
@@ -55,7 +55,7 @@ body {
     filter: blur(120px);
     pointer-events: none;
     z-index: 1;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .bg-glow-1 {
@@ -77,7 +77,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.015;
+    opacity: 0.01;
     pointer-events: none;
     z-index: 2;
 }
@@ -91,10 +91,10 @@ body {
     left: 0;
     right: 0;
     height: 70px;
-    background: rgba(3, 7, 18, 0.7);
+    background: rgba(248, 250, 252, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
     z-index: 100;
 }
 
@@ -127,7 +127,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
 }
 
 .brand-text {
@@ -167,26 +167,26 @@ body {
 
 .back-btn {
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.02);
+    border: 1px solid rgba(15, 23, 42, 0.05);
 }
 
 .back-btn:hover {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.05);
+    border-color: rgba(15, 23, 42, 0.1);
 }
 
 .download-btn {
     color: #fff;
     background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-cyan) 100%);
     border: none;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15);
 }
 
 .download-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
 }
 
 /* ==========================================
@@ -204,7 +204,7 @@ body {
     gap: 1.75rem;
 }
 
-/* Premium Glass Card Pattern */
+/* Premium Light Glass Card Pattern */
 .glass-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -258,7 +258,7 @@ body {
     font-weight: 800;
     letter-spacing: -1px;
     line-height: 1.1;
-    background: linear-gradient(135deg, #fff 30%, var(--text-secondary) 100%);
+    background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
@@ -267,7 +267,7 @@ body {
 .candidate-title {
     font-family: var(--font-heading);
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.5px;
     color: var(--accent-cyan);
     margin-bottom: 0.75rem;
@@ -279,7 +279,7 @@ body {
     gap: 0.6rem;
     flex-wrap: wrap;
     font-size: 0.825rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-muted);
 }
 
@@ -302,7 +302,7 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.875rem;
-    font-weight: 400;
+    font-weight: 500;
     transition: var(--transition-smooth);
 }
 
@@ -331,8 +331,8 @@ body {
     align-items: center;
     gap: 0.45rem;
     padding: 0.4rem 0.85rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(15, 23, 42, 0.02);
+    border: 1px solid rgba(15, 23, 42, 0.04);
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 600;
@@ -348,8 +348,8 @@ body {
 
 .social-btn:hover {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.05);
+    border-color: rgba(15, 23, 42, 0.1);
 }
 
 .social-btn:hover svg {
@@ -418,7 +418,7 @@ body {
     color: var(--text-primary);
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -450,7 +450,7 @@ body {
 .timeline {
     position: relative;
     padding-left: 1.5rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 1px solid rgba(15, 23, 42, 0.08);
     margin-left: 0.5rem;
 }
 
@@ -467,7 +467,7 @@ body {
     background: var(--bg-color);
     border: 2.5px solid var(--accent-cyan);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(8, 145, 178, 0.2);
 }
 
 .timeline-header {
@@ -490,7 +490,7 @@ body {
 .company-name {
     font-family: var(--font-heading);
     font-size: 0.925rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--accent-color);
 }
 
@@ -516,8 +516,8 @@ body {
     font-size: 0.75rem;
     font-style: italic;
     color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(15, 23, 42, 0.01);
+    border: 1px solid rgba(15, 23, 42, 0.03);
     padding: 0.25rem 0.6rem;
     border-radius: 4px;
     display: inline-block;
@@ -565,7 +565,7 @@ body {
 }
 
 .project-item:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 }
 
 .project-header {
@@ -587,8 +587,8 @@ body {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     color: var(--accent-cyan);
-    background: rgba(6, 182, 212, 0.05);
-    border: 1px solid rgba(6, 182, 212, 0.1);
+    background: rgba(8, 145, 178, 0.05);
+    border: 1px solid rgba(8, 145, 178, 0.1);
     padding: 0.15rem 0.45rem;
     border-radius: 4px;
 }
@@ -615,7 +615,7 @@ body {
 
 .skills-category:not(:last-child) {
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 }
 
 .skills-cat-title {
@@ -638,8 +638,8 @@ body {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(15, 23, 42, 0.02);
+    border: 1px solid rgba(15, 23, 42, 0.04);
     padding: 0.3rem 0.65rem;
     border-radius: 6px;
     transition: var(--transition-smooth);
@@ -647,8 +647,8 @@ body {
 
 .skill-pill:hover {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(15, 23, 42, 0.05);
+    border-color: rgba(15, 23, 42, 0.08);
 }
 
 /* Certifications List */
@@ -661,7 +661,7 @@ body {
 
 .cert-list li:not(:last-child) {
     padding-bottom: 0.85rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 }
 
 .cert-group-title {
@@ -705,7 +705,7 @@ body {
 .edu-school {
     font-size: 0.85rem;
     color: var(--accent-color);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .edu-meta {
@@ -717,10 +717,10 @@ body {
    FOOTER SECTION
    ========================================== */
 .footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(15, 23, 42, 0.04);
     padding: 2rem 1rem;
     text-align: center;
-    color: var(--text-dimmed);
+    color: var(--text-muted);
     font-size: 0.8rem;
     letter-spacing: 0.5px;
     margin-top: auto;
@@ -750,7 +750,7 @@ body {
     .contact-details {
         width: 100%;
         min-width: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(15, 23, 42, 0.05);
         padding-top: 1rem;
     }
 }
@@ -850,7 +850,7 @@ body {
     
     /* 3. Metric Strip in Print */
     .metric-strip {
-        display: none !important; /* Exclude metric strip from print to save vertical space */
+        display: none !important;
     }
     
     /* 4. Split Layout to Columns */
@@ -870,7 +870,7 @@ body {
     }
     
     .section-heading::before {
-        display: none !important; /* Hide visual cyan dot in print */
+        display: none !important;
     }
     
     .summary-text {
